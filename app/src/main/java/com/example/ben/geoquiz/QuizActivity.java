@@ -88,14 +88,15 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         mPrevButton = (Button) findViewById(R.id.prev_button);
-        mPrevButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                mCurrentIndex=(mCurrentIndex+mQuestionBank.length-1)%mQuestionBank.length;
-                updateQuestion();
-            }
-        });
-
+        if (mPrevButton!=null) {
+            mPrevButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCurrentIndex = (mCurrentIndex + mQuestionBank.length - 1) % mQuestionBank.length;
+                    updateQuestion();
+                }
+            });
+        }
         updateQuestion();
     }
 
