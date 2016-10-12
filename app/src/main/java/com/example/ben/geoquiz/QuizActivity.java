@@ -1,5 +1,6 @@
 package com.example.ben.geoquiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mFalseButton;
     private Button mNextButton;
     private Button mPrevButton;
+    private Button mCheatButton;
     private TextView mQuestionTextView;
 
     private Question[] mQuestionBank=new Question[]{
@@ -91,6 +93,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        /*
         mPrevButton = (Button) findViewById(R.id.prev_button);
         if (mPrevButton!=null) {
             mPrevButton.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +101,18 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     mCurrentIndex = (mCurrentIndex + mQuestionBank.length - 1) % mQuestionBank.length;
                     updateQuestion();
+                }
+            });
+        }*/
+
+        mCheatButton= (Button) findViewById(R.id.cheat_button);
+        if (mCheatButton!=null){
+            mCheatButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+                    Intent i = CheatActivity.newIntent(QuizActivity.this, answerIsTrue);
+                    startActivity(i);
                 }
             });
         }
