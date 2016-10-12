@@ -28,25 +28,23 @@
             android:text="@string/false_button" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/prev_button"
+
+
+    <Button
+            android:id="@+id/cheat_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_left"
-            android:contentDescription="@string/prev_button"/>
+            android:text="@string/cheat_button"
+            android:contentDescription="@string/cheat_button"/>
 
-        <Button
+    <Button
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right"
+            android:drawableRight="@drawable/arrow_right"
+            android:text="@string/next_button"
             android:contentDescription="@string/next_button"/>
 
-    </LinearLayout>
-
 </LinearLayout>
+
