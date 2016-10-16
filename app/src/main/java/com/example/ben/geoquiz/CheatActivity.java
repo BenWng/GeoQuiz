@@ -18,6 +18,9 @@ public class CheatActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_SHOWN = "com.example.ben.geoquiz.answer_shown";
     private boolean mAnswerIsTrue;
     private TextView mAnswerTextView;
+    private boolean mIsCheater=false;
+    private String KEY_ISCHEATER="isCheater";
+
 
     public static Intent newIntent(Context packageContext, boolean answerIsTrue) {
         Intent i=new Intent(packageContext, CheatActivity.class);
@@ -28,6 +31,14 @@ public class CheatActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //To get saved data, after the activity has been destoryed
+        if(savedInstanceState!=null){
+            mIsCheater=savedInstanceState.getBoolean(KEY_ISCHEATER,false);
+            setAnswerShownResult(mIsCheater);
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
 
@@ -46,12 +57,18 @@ public class CheatActivity extends AppCompatActivity {
                 else{
                     mAnswerTextView.setText(R.string.false_button);
                 }
-
-                setAnswerShownResult(true);
+                mIsCheater=true;
+                setAnswerShownResult(mIsCheater);
             }
         });
     }
 
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean(KEY_ISCHEATER,mIsCheater);
+    }
 
     private void setAnswerShownResult(boolean isAnswerShown){
         Intent data=new Intent();

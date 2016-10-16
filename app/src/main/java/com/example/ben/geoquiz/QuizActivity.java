@@ -17,6 +17,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX="index";
+    private static final String KEY_ISCHEATER="isCheater";
     //REQUEST_CODE_CHEAT does not do much here, it is used when activity starts more than one type
     // of child activity and needs to know who is reporting
     private static final int REQUEST_CODE_CHEAT=0;
@@ -149,9 +150,10 @@ public class QuizActivity extends AppCompatActivity {
                 }
             });
         }
-
+        //To get saved data, after the activity has been destroyed
         if(savedInstanceState!=null){
             mCurrentIndex=savedInstanceState.getInt(KEY_INDEX,0);
+            mIsCheater=savedInstanceState.getBoolean(KEY_ISCHEATER,false);
         }
 
 
@@ -163,6 +165,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+        savedInstanceState.putBoolean(KEY_ISCHEATER,mIsCheater);
     }
 
 
